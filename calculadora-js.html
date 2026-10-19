@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <script>
+        function Calcular(){
+            let num1 = document.getElementById("num1").value;
+            let num2 = document.getElementById("num2").value;
+            let op = document.getElementById("op").value;
+        }
+
+    </script>
+
+
+    <h1>Calculadora</h1>
+
+    <form>
+        Digite o primeiro número: <input type="number" name="num1" id="num1">
+        <br><br>
+
+        Selecione o operador:
+        <select name="calcular" id="op">
+            <option value="somar">+</option>
+            <option value="subtrair">-</option>
+            <option value="multiplicar">*</option>
+            <option value="dividir">/</option>
+        </select>
+        <br><br>
+
+        Digite o segundo número: <input type="number" name="num2" id="num2">
+        <br><br>
+
+        <input type="button" value="Calcular" onclick="Calcular()">
+    </form>
+
+    <p id="msg"></p>
+</body>
+</html>
