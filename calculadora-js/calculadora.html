@@ -7,10 +7,36 @@
 </head>
 <body>
     <script>
-        function Calcular(){
+        function Calcula(){
             let num1 = document.getElementById("num1").value;
             let num2 = document.getElementById("num2").value;
             let op = document.getElementById("op").value;
+
+            console.log(num1);
+            console.log(num2);
+            console.log(op);
+            let msg = "Calcular: a " + num1 + " + b " + num2;
+            document.getElementById("msg").innerHTML = msg;
+
+            let xmlhttp = new XMLHttpRequest();
+            console.log("1");
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("Chegou a resposta OK: " + this.responseText);
+                    console.log("2");
+                    document.getElementById("msg").innerHTML = this.responseText;
+                } else if (this.readyState < 4){
+                    console.log("3: " + this.readyState);
+                } else {
+                    console.log("Requisicao falhou: " + this.status);
+                }
+            }
+
+            console.log("4");
+            xmlhttp.open("GET", "http://localhost/3DAW/calculadora-js/calcular.php?num1=" + num1 + "&num2=" + num2 + "&op=" + op);
+            xmlhttp.send();
+            console.log("enviei form");
+            console.log("5");
         }
 
     </script>
@@ -18,23 +44,23 @@
 
     <h1>Calculadora</h1>
 
-    <form>
+    <form action="" method="GET" name="frmCalc" id="frmCalc">
         Digite o primeiro número: <input type="number" name="num1" id="num1">
         <br><br>
 
         Selecione o operador:
         <select name="calcular" id="op">
-            <option value="somar">+</option>
-            <option value="subtrair">-</option>
-            <option value="multiplicar">*</option>
-            <option value="dividir">/</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
         </select>
         <br><br>
 
         Digite o segundo número: <input type="number" name="num2" id="num2">
         <br><br>
 
-        <input type="button" value="Calcular" onclick="Calcular()">
+        <input type="button" value="Calcular" onclick="Calcula()">
     </form>
 
     <p id="msg"></p>
